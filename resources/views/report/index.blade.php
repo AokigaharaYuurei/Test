@@ -23,24 +23,11 @@
                 <p>{{$report->number}}</p>
                 <p>{{$report->description}}</p>
                 @endforeach
-            </div>
-            <div class="text-line">
-                @foreach ($reports as $report)
-                <p>{{$report->number}}</p>
-                <p>{{$report->description}}</p>
-                @endforeach
-            </div>
-            <div class="text-line">
-                @foreach ($reports as $report)
-                <p>{{$report->number}}</p>
-                <p>{{$report->description}}</p>
-                @endforeach
-            </div>
-            <div class="text-line">
-                @foreach ($reports as $report)
-                <p>{{$report->number}}</p>
-                <p>{{$report->description}}</p>
-                @endforeach
+                <form method="POST" action="{{route('reports.destroy', $report->id)}}">
+                    @method('delete')
+                    @csrf
+                    <input type="submit" value="Удалить">
+                </form>
             </div>
         </div>
     </main>

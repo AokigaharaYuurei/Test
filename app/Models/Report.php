@@ -7,5 +7,5 @@ use Illuminate\Database\Http\Controllers\ReportController;
 
 class Report extends Model
 {
-    //
+    
 }
