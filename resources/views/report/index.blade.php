@@ -29,6 +29,7 @@
                     <input type="submit" value="Удалить">
                 </form>
             </div>
+            <a href="../report/create.blade.php">Создать заявление</a>
         </div>
     </main>
 </body>
