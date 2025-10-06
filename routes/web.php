@@ -4,7 +4,7 @@ use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 use Phiki\Phast\Root;
 
-Route::get('/', function () {return view('report.index');});
+Route::get('/', function () {return view('welcome');});
 
 Route::get('/reports', [ReportController::class, 'index'])->name('report.index');
 
