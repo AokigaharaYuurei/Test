@@ -15,7 +15,7 @@
         <h1 class="red"><span class="blue">НАРУШЕНИЙ</span>.НЕТ</h1>
     </header>
     <main>
-        <button>создать заявление</button>
+        <a href="../report/create.blade.php"><button>создать заявление</button></a>
         <div class="card">
             <p class="data">19.10.2024</p>
             <div class="text-line">
@@ -27,9 +27,8 @@
                     @method('delete')
                     @csrf
                     <input type="submit" value="Удалить">
-                </form>
+                </form> 
             </div>
-            <a href="../report/create.blade.php">Создать заявление</a>
         </div>
     </main>
 </body>
