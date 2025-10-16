@@ -7,6 +7,7 @@
 </head>
 <body>
     <header><h1 class="red"><span class="blue">НАРУШЕНИЙ</span>.НЕТ</h1></header>
+     <a href="{{route('reports.edit')}}"><button>создать заявление</button></a>
     <main>
         <form method="POST" action="{{route('reports.store')}}">
             @csrf

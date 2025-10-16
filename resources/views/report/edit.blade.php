@@ -10,6 +10,7 @@
 <body>
     <header>
         <h1 class="red"><span class="blue">НАРУШЕНИЙ</span>.НЕТ</h1>
+         <a href="{{route('reports.index')}}"><button>посмотреть заявления</button></a>
     </header>
     <main>
         <div class="update">
