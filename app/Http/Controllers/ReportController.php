@@ -38,14 +38,14 @@ public function edit(Report $report){
 
 }
 
-public function update(Request $request, Report $report){
+public function update1(Request $request, Report $report){
     $data = $request -> validate([
         'number' => 'string',
         'description' => 'string',
     ]);
 
     $report->update($data);
-    return redirect()->back();
+    return redirect()->route('reports.index');
 }
 }
 
