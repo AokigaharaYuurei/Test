@@ -20,6 +20,7 @@
                 @foreach ($reports as $report)
                 <p>{{$report->number}}</p>
                 <p>{{$report->description}}</p>
+                <p>{{$report->status->name}}</p>
                 
                 <a href="{{ route('reports.edit', $report->id) }}">Редактировать</a>
                 
@@ -30,6 +31,7 @@
                 </form>
                 <hr>
                 @endforeach
+                {{$reports->links()}}
             </div>
         </div>
     </main>
