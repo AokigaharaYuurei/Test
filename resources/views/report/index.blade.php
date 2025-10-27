@@ -24,7 +24,7 @@
                 <ul>
                     @foreach ($statuses as $status)
                     <li>
-                        <a href="{{route('reports.index', ['sort' => $sort, 'status' => $status->id])}}">
+                        <a href="{{route('reports.index', ['sort' => $sort,  'status' => $status->id])}}">
                             {{$status->name}}
                         </a>
                     </li>
