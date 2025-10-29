@@ -6,15 +6,17 @@
     <title>Редактирование заявления</title>
 </head>
 <body>
-    <header>
+    
+    <main>
+        <x-app-layout>
+            <header>
         <a href="{{ route('reports.index') }}"><h1 class="red"><span class="blue">НАРУШЕНИЙ</span>.НЕТ</h1></a>
         <nav>
             <a href="{{ route('reports.index') }}">Все заявления</a>
             <a href="{{ route('reports.create') }}">Создать заявление</a>
         </nav>
     </header>
-    <main>
-        <div class="update">
+            <div class="update">
             <div class="update_text">
                 <form method="POST" action="{{ route('reports.update', $report->id) }}">
                     @csrf
@@ -25,6 +27,7 @@
                 </form>
             </div>
         </div>
+        </x-app-layout>
     </main>
 </body>
 </html>

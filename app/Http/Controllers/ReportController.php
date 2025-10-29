@@ -8,6 +8,8 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\Return_;
 
+use Illuminate\Support\Facades\Auth;
+
 class ReportController extends Controller {
 
 public function index(Request $request){
@@ -22,10 +24,12 @@ $sort = $request->input('sort');
         ]);
         if($validate){
             $reports = Report::where('status_id', $status)
+            ->where('user_id', Auth::user()->id)
             ->orderBy('created_at', $sort)
             ->paginate(8);
         } else{
-            $reports = Report::orderBy('created_at', $sort)
+            $reports = Report::where('user_id', Auth::user()->id)
+            ->orderBy('created_at', $sort)
             ->paginate(8);
         }
 
@@ -47,6 +51,9 @@ public function store(Request $request, Report $report){
         'description' => 'string',
     ]);
 
+    $data['user_id'] = Auth::user()->id;
+    $data['status_id'] = 1;
+
     $report->create($data);
     return redirect()->back();
 }
@@ -57,7 +64,12 @@ public function store(Request $request, Report $report){
     }
 
 public function edit(Report $report){
-    return view('report.edit', compact('report'));
+    if (Auth::user()->id === $report->user_id){
+        return view('report.edit', compact('report'));
+    }
+    else{
+        abort(403, 'У вас нет прав на редактирование этой записи.');
+    }
 
 }
 
