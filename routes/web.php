@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReportController;
+use App\Http\Middleware\Admin;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -24,6 +25,13 @@ Route::get('/reports/{report}/edit', [ReportController::class, 'edit'])->name('r
 Route::put('/reports/{report}', [ReportController::class, 'update1'])->name('reports.update');
 
 Route::delete('/reports/{report}', [ReportController::class, 'destroy'])->name('reports.destroy');
+});
+
+Route::middleware((Admin::class))->group(function(){
+    Route::get('/admin', function(){
+        return view('admin.index');
+    }
+    )->name('admin.index');
 });
 
 
