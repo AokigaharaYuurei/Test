@@ -40,10 +40,16 @@ $sort = $request->input('sort');
     
 }
 
-public function destroy(Report $report){
-    $report -> delete();
-    return redirect()->back();
-}
+public function destroy(Report $report)
+    {
+        if (Auth::user()->id != $report->user_id) {
+            abort(403, 'У вас нет прав на удаление этой записи.');
+        }
+        
+        $report->delete();
+        return redirect()->back();
+    }
+
 
 public function store(Request $request, Report $report){
     $data = $request -> validate([
@@ -73,15 +79,29 @@ public function edit(Report $report){
 
 }
 
-public function update1(Request $request, Report $report){
-    $data = $request -> validate([
-        'number' => 'string',
-        'description' => 'string',
-    ]);
+public function show(Report $report)
+    {
+        if (Auth::user()->id != $report->user_id) {
+            abort(403, 'У вас нет прав на просмотр этой записи.');
+        }
+        
+        return view('reports.show', compact('report'));
+    }
 
-    $report->update($data);
-    return redirect()->route('reports.index');
-}
+    public function update(Request $request, Report $report)
+    {
+        if (Auth::user()->id != $report->user_id) {
+            abort(403, 'У вас нет прав на обновление этой записи.');
+        }
+        
+        $data = $request->validate([
+            'number' => 'string',
+            'description' => 'string',
+        ]);
+        
+        $report->update($data);
+        return redirect()->route('reports.index');
+    }
 }
 
 
