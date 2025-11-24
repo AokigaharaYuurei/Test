@@ -105,11 +105,19 @@ class ReportController extends Controller
 
 
     public function statusUpdate(Request $request, Report $report)
-    {
-        $request->validate([
-            'status_id' => 'required| exists:statuses,id',
-        ]);
-        $report->update($request->only(['status_id']));
-        return redirect()->back();
+{
+    if ($report->status->name !== 'новое') {
+        return redirect()->back()->with('error', 'Можно изменять статус только у новых заявлений');
     }
+
+    $allowedStatuses = Status::whereIn('name', ['подтверждено', 'отклонено'])->pluck('id');
+    
+    $request->validate([
+        'status_id' => 'required|in:' . $allowedStatuses->implode(',')
+    ]);
+
+    $report->update(['status_id' => $request->status_id]);
+
+    return redirect()->back()->with('success', 'Статус заявления обновлен');
+}
 }
