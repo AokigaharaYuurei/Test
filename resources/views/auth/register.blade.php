@@ -1,80 +1,81 @@
 <x-guest-layout>
+    <header></header>
     <form method="POST" action="{{ route('register') }}">
         @csrf
-
+        <div class="flex flex-col items-center justify-center mb-8">
+            <header class="text-center w-full">
+                <p class="text-[#051AFF] font-bold text-[48px]">НАРУШЕНИЙ <span class="text-[#FF0000] font-bold">.НЕТ</span></p>
+                <p class="text-[32px] text-[#051AFF]">Регистрация</p>
+            </header>
+        </div>
         <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+        <div class="w-full flex justify-center mt-4">
+            <x-text-input id="name" class="block mt-1 w-[250px] text-[#8A8080] border-[#051AFF]" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" placeholder="Имя"/>
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
 
         <!--Middlename-->
-        <div class="mt-4">
-            <x-input-label for="middlename" :value="__('Middlename')" />
-            <x-text-input id="middlename" class="block mt-1 w-full" type="text" name="middlename" :value="old('middlename')" required autocomplete="middlename" />
+        <div class="w-full flex justify-center mt-4">
+            <x-text-input id="middlename" class="block mt-1 w-[250px] text-[#8A8080] border-[#051AFF]" type="text" name="middlename" :value="old('middlename')" required autocomplete="middlename" placeholder="Отчество" />
             <x-input-error  :messages="$errors->get('middlename')" class="mt-2" />
         </div>
 
         <!--Lastname-->
-        <div class="mt-4">
-            <x-input-label for="lastname" :value="__('Lastname')" />
-            <x-text-input id="lastname" class="block mt-1 w-full" type="text" name="lastname" :value="old('lastname')" required autocomplete="lastname" />
+        <div class="w-full flex justify-center mt-4">
+            <x-text-input id="lastname" class="block mt-1 w-[250px] text-[#8A8080] border-[#051AFF]" type="text" name="lastname" :value="old('lastname')" required autocomplete="lastname" placeholder="Фамилия" />
             <x-input-error  :messages="$errors->get('lastname')" class="mt-2" />
         </div>
 
         <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+        <div class="w-full flex justify-center mt-4">
+            <x-text-input id="email" class="block mt-1 w-[250px] text-[#8A8080] border-[#051AFF]" type="email" name="email" :value="old('email')" required autocomplete="username" placeholder="Почта"/>
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
         <!--Login-->
-        <div class="mt-4">
-            <x-input-label for="login" :value="__('Login')" />
-            <x-text-input id="login" class="block mt-1 w-full" type="text" name="login" :value="old('login')" required autocomplete="login" />
+        <div class="w-full flex justify-center mt-4">
+            <x-text-input id="login" class="block mt-1 w-[250px] text-[#8A8080] border-[#051AFF]" type="text" name="login" :value="old('login')" required autocomplete="login" placeholder="Логин"/>
             <x-input-error  :messages="$errors->get('login')" class="mt-2" />
         </div>
 
         <!--Tel-->
-        <div class="mt-4">
-            <x-input-label for="tel" :value="__('Tel')" />
-            <x-text-input id="tel" class="block mt-1 w-full" type="tel" name="tel" :value="old('tel')" required autocomplete="tel" />
+        <div class="w-full flex justify-center mt-4">
+            <x-text-input id="tel" class="block mt-1 w-[250px] text-[#8A8080] border-[#051AFF]" type="tel" name="tel" :value="old('tel')" required autocomplete="tel" placeholder="Телефон"/>
             <x-input-error  :messages="$errors->get('tel')" class="mt-2" />
         </div>
 
         <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+        <div class="w-full flex justify-center mt-4">
 
-            <x-text-input id="password" class="block mt-1 w-full"
+            <x-text-input id="password" class="block mt-1 w-[250px] text-[#8A8080] border-[#051AFF]"
                             type="password"
                             name="password"
-                            required autocomplete="new-password" />
+                            required autocomplete="new-password" placeholder="Пароль"/>
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
         <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+        <div class="w-full flex justify-center mt-4">
 
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
+            <x-text-input id="password_confirmation" class="block mt-1 w-[250px] text-[#8A8080] border-[#051AFF]"
                             type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
+                            name="password_confirmation" required autocomplete="new-password" placeholder="Подтвердите пароль"/>
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
-        <div class="flex items-center justify-end mt-4">
+        <div class="flex flex-col items-center w-full flex justify-center space-y-3 mt-4">
+
+            <x-primary-button class="ms-4 w-[250px] bg-[#051AFF] justify-center">
+                {{ __('создать аккаунт') }}
+            </x-primary-button>
+            
             <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
+                {{ __('У вас уже есть аккаунт? Войти') }}
             </a>
 
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
+            
         </div>
     </form>
 </x-guest-layout>
