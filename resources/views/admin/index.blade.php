@@ -6,8 +6,8 @@
     <title>Административная панель</title>
 </head>
 <body>
-    <x-app-layout>
-        <h1>Административная панель</h1>
+    <x-app-layout >
+       <div class="min-h-screen bg-[#DDE8FF] py-8">
         @if(session('success'))
             <div class="alert alert-success">
                 {{ session('success') }}
@@ -23,27 +23,29 @@
         @endif
 
         <main>
-            <table class="admin-table">
-                <thead>
+            <table class="bg-[#FFFFFF] m-6">
+                <thead class="bg-[#051AFF] text-[#FFFFFF] text-[20px] w-[1180px]">
                     <tr>
-                        <th>ФИО</th>
-                        <th>Текст заявления</th>
+                        <th>Дата</th>
+                        <th>ФИО подавшего</th>
                         <th>Номер автомобиля</th>
+                        <th>Описание заявления</th>
                         <th>Статус</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="text-[20px]">
                     @foreach ($reports as $report)
                     <tr>
+                        <td>{{ $report-> created_at}}</td>
                         <td>{{ $report->user->name ?? 'Не указано' }}</td>
-                        <td>{{ $report->description }}</td>
                         <td>{{ $report->number }}</td>
+                        <td>{{ $report->description }}</td>
                         <td>
                             @if($report->status->name === 'новое')
                                 <form class="status-form" action="{{route('reports.status.update', $report->id)}}" method="POST">
                                     @method('patch')
                                     @csrf
-                                    <select name="status_id" id="status_id">
+                                    <select class="border-[#051AFF] rounded-lg text-[20px]" name="status_id" id="status_id">
                                         @foreach($allowedStatuses as $status)
                                         <option value="{{$status->id}}" {{$status->id === $report->status_id ? 'selected' : ''}}>
                                             {{$status->name}}
@@ -61,6 +63,7 @@
                 </tbody>
             </table>
         </main>
+       </div>
     </x-app-layout>
 </body>
 </html>

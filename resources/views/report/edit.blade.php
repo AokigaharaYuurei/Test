@@ -10,7 +10,6 @@
     <main>
         <x-app-layout>
             <header>
-        <a href="{{ route('reports.index') }}"><h1 class="red"><span class="blue">НАРУШЕНИЙ</span>.НЕТ</h1></a>
         <nav>
             <a href="{{ route('reports.index') }}">Все заявления</a>
             <a href="{{ route('reports.create') }}">Создать заявление</a>
