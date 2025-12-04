@@ -7,7 +7,7 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('reports.index')" :active="request()->routeIs('reports.index')">
                         <p class="text-[48px] text-[#051AFF]">Нарушений<span class="text-[#FF0000]">.нет</span></p>
                     </x-nav-link>
                 </div>
