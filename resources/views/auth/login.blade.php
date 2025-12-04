@@ -12,7 +12,7 @@
         </div>
         <!-- Email Address -->
         <div class="w-full flex justify-center mt-4">
-            <x-text-input id="login" class=" w-[250px] block mt-1 w-full text-[#8A8080] text-[18px] border-[#051AFF]" type="text" name="login" :value="old('login')" required autofocus autocomplete="login" placeholder="логин"/>
+            <x-text-input id="login" class=" w-[250px] block mt-1 w-full text-[#8A8080] text-[18px] border-[#051AFF]" type="text" name="login" :value="old('login')" required autofocus autocomplete="login" placeholder="логин" />
             <x-input-error :messages="$errors->get('login')" class="mt-2" />
         </div>
 
@@ -20,9 +20,9 @@
         <div class="mt-4  w-full flex justify-center">
 
             <x-text-input id="password" class="w-[250px] block mt-1 w-full text-[#8A8080] text-[18px] border-[#051AFF]"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" placeholder="пароль"/>
+                type="password"
+                name="password"
+                required autocomplete="current-password" placeholder="пароль" />
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
@@ -36,14 +36,20 @@
         </div>
 
         <div class="flex flex-col items-center mt-4 space-y-3">
-            <x-primary-button class="w-[250px] bg-[#051AFF] justify-center">
+            <x-primary-button class="w-[250px] bg-[#051AFF] hover:bg-[#000C92] justify-center">
                 {{ __('Войти') }}
             </x-primary-button>
 
             @if (Route::has('password.request'))
-                <a class="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors duration-200" href="{{ route('password.request') }}">
-                    {{ __('Забыли пароль?') }}
-                </a>
+            <a class="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors duration-200" href="{{ route('password.request') }}">
+                {{ __('Забыли пароль?') }}
+            </a>
+            @endif
+
+            @if (Route::has('register'))
+            <a class="text-sm text-[#051AFF] hover:text-[#000C92] dark:hover:text-[#7782FF] transition-colors duration-200" href="{{ route('register') }}">
+                {{__('Зарегистрироваться')}}
+            </a>
             @endif
         </div>
     </form>
