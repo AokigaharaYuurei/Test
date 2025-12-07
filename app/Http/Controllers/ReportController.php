@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use PhpParser\Node\Stmt\Return_;
 
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class ReportController extends Controller
 {
@@ -51,7 +52,7 @@ class ReportController extends Controller
     }
 
 
-    public function store(Request $request, Report $report)
+    public function store(Request $request, Report $report): RedirectResponse
     {
         $data = $request->validate([
             'number' => 'string',
@@ -61,9 +62,22 @@ class ReportController extends Controller
         $data['user_id'] = Auth::user()->id;
         $data['status_id'] = 1;
 
+        $request->validate([
+            'number' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string'],
+        ]);
+        Report::create([
+            'number' => $request->number,
+            'description' => $request->description,
+            'status_id' => 1,
+            'user_id' => Auth::user()->id,
+        ]);
+        return redirect()->route('dashboard')->with('info', 'Заявление отправлено');
+
         $report->create($data);
         return redirect()->back();
     }
+
 
     public function create(Report $report)
     {

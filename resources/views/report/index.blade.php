@@ -67,9 +67,10 @@
                 @method('put')
                 @csrf
                 <div class="bg-[#ffff] mb-3 space-y-4 p-4 md:p-7 rounded-xl">
-                    <p class="text-[#FF0000] font-bold text-[14px] md:text-[16px]">{{$report-> created_at}}</p>
+                    <p class="text-[#FF0000] font-bold text-[14px] md:text-[16px]">{{\Carbon\Carbon::parse($report->created_at)->translatedFormat('j F Y h:i');}}</p>
                     <p class="text-blod font-bold text-[14px] md:text-[16px]">{{$report-> number}}</p>
                     <p class="text-[14px] md:text-[16px] leading-relaxed">{{$report-> description}}</p>
+                    
                     <div class="flex flex-wrap items-center">
                         <p class="text-[14px] md:text-[16px]">Статус заявления -</p>
                         <p class="font-bold ml-2 text-[14px] md:text-[16px]">{{$report->status->name}}</p>

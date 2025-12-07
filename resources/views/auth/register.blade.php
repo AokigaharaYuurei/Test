@@ -56,7 +56,7 @@
 
         <!--Tel-->
         <div class="w-full flex justify-center mt-4">
-            <x-text-input id="tel" class="block mt-1 w-[250px] text-[#8A8080] border-[#051AFF]" type="tel" name="tel" :value="old('tel')" required autocomplete="tel" placeholder="Телефон" />
+            <x-tel-input id="tel" class="block mt-1 w-[250px] text-[#8A8080] border-[#051AFF]" type="tel" name="tel" :value="old('tel')" required autocomplete="tel" placeholder="Телефон" />
             <x-input-error :messages="$errors->get('tel')" class="mt-2" />
         </div>
 
