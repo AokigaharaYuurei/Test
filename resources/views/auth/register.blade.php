@@ -5,7 +5,7 @@
         <div class="flex flex-col items-center justify-center mb-8">
             <header class="text-center w-full">
                 <p class="text-[#051AFF] font-bold text-[48px]">НАРУШЕНИЙ <span class="text-[#FF0000] font-bold">.НЕТ</span></p>
-                <p class="text-[32px] text-[#051AFF]">Регистрация</p>
+                <p class="text-[32px] text-[#051AFF]">{{__('Регистрация')}}</p>
             </header>
         </div>
 
@@ -73,10 +73,11 @@
             </x-primary-button>
 
             <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
-                {{ __('У вас уже есть аккаунт? ') }}<span class="text-[#051AFF]">Войти</span>
+                {{ __('У вас уже есть аккаунт? ') }}<span class="text-[#051AFF]">{{__('Войти')}}</span>
             </a>
 
 
         </div>
     </form>
+    @include('components.flash-messages')
 </x-guest-layout>

@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
+    public function __construct()
+    {
+        // Можно добавить middleware в конструкторе для дополнительной защиты
+        $this->middleware(['auth', 'admin']);
+    }
+    
     public function index()
     {
         $reports = Report::with(['user', 'status'])->get();

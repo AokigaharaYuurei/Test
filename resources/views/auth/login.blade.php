@@ -7,7 +7,7 @@
         <div class="flex flex-col items-center justify-center mb-8">
             <header class="text-center w-full">
                 <p class="text-[#051AFF] font-bold text-[48px]">НАРУШЕНИЙ <span class="text-[#FF0000] font-bold">.НЕТ</span></p>
-                <p class="text-[32px] text-[#051AFF]">Авторизация</p>
+                <p class="text-[32px] text-[#051AFF]">{{__('Авторизация')}}</p>
             </header>
         </div>
         <!-- Email Address -->
@@ -53,4 +53,5 @@
             @endif
         </div>
     </form>
+    @include('components.flash-messages')
 </x-guest-layout>

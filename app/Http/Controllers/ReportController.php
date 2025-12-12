@@ -6,14 +6,11 @@ use App\Models\Report;
 use App\Models\Status;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-use PhpParser\Node\Stmt\Return_;
-
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class ReportController extends Controller
 {
-
     public function index(Request $request)
     {
         $sort = $request->input('sort');
@@ -25,6 +22,7 @@ class ReportController extends Controller
         $validate = $request->validate([
             'status' => "exists:statuses,id"
         ]);
+        
         if ($validate) {
             $reports = Report::where('status_id', $status)
                 ->where('user_id', Auth::user()->id)
@@ -48,36 +46,28 @@ class ReportController extends Controller
         }
 
         $report->delete();
-        return redirect()->back();
+        return redirect()->back()->with('info', 'Заявление удалено');
     }
 
-
-    public function store(Request $request, Report $report): RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
-        $data = $request->validate([
-            'number' => 'string',
-            'description' => 'string',
-        ]);
-
-        $data['user_id'] = Auth::user()->id;
-        $data['status_id'] = 1;
-
-        $request->validate([
+        // Валидация данных
+        $validated = $request->validate([
             'number' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string'],
         ]);
+        
+        // Создание заявления
         Report::create([
-            'number' => $request->number,
-            'description' => $request->description,
+            'number' => $validated['number'],
+            'description' => $validated['description'],
             'status_id' => 1,
             'user_id' => Auth::user()->id,
         ]);
-        return redirect()->route('dashboard')->with('info', 'Заявление отправлено');
-
-        $report->create($data);
-        return redirect()->back();
+        
+        // Редирект на страницу со списком заявлений
+        return redirect()->route('reports.index')->with('info', 'Заявление отправлено');
     }
-
 
     public function create(Report $report)
     {
@@ -109,14 +99,13 @@ class ReportController extends Controller
         }
 
         $data = $request->validate([
-            'number' => 'string',
-            'description' => 'string',
+            'number' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string'],
         ]);
 
         $report->update($data);
-        return redirect()->route('reports.index');
+        return redirect()->route('reports.index')->with('info', 'Заявление обновлено');
     }
-
 
     public function statusUpdate(Request $request, Report $report)
     {

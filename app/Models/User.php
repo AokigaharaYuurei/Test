@@ -58,7 +58,7 @@ class User extends Authenticatable
 
     const ADMIN_ROLE = 'admin';
 
-    public function isAdmin(){
+    public function isAdmin():bool{
         return $this->role === self::ADMIN_ROLE;
     }
 }

@@ -10,6 +10,7 @@
 <body>
     <main>
         <x-app-layout>
+            @include('components.flash-messages')
             <header class="min-h-screen bg-[#DDE8FF] py-8 [@media(max-width:320px)]:py-4">
                 <div class="flex">
                     <form method="POST" action="{{ route('reports.store') }}" class="w-[400px] [@media(max-width:320px)]:w-full [@media(max-width:320px)]:px-4">

@@ -13,14 +13,20 @@ class Admin
      * Handle an incoming request.
      *
      * @param \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response) $next
-     */    public function handle(Request $request, Closure $next): Response
+     */    
+    public function handle(Request $request, Closure $next): Response
     {
         if (Auth::check()) {
             if (Auth::user()->isAdmin() === true) {
                 return $next($request);
+            } else {
+                // Если пользователь авторизован, но не админ
+                // Перенаправляем на dashboard с сообщением об ошибке
+                return redirect()->route('dashboard')->with('error', 'У вас нет прав администратора для доступа к этой странице.');
             }
         }
-        
-        return redirect('login')->with('error', 'Авторизуйтесь под администратором');
+
+        // Если не авторизован
+        return redirect()->route('login')->with('error', 'Пожалуйста, авторизуйтесь.');
     }
 }

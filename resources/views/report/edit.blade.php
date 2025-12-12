@@ -13,7 +13,7 @@
             <header class="bg-[#DDE8FF] py-8 [@media(max-width:320px)]:py-4">
                 <nav>
                     <a href="{{ route('reports.create') }}" class="bg-[#FF0000] text-[18px] hover:bg-blue-700 text-white font-semibold py-3 px-6 mx-4 rounded-lg shadow-md transition duration-200 inline-block [@media(max-width:320px)]:my-4 [@media(max-width:320px)]:text-center ">
-                        Создать заявление
+                        {{__('Создать заявление')}}
                     </a>
                 </nav>
             </header>

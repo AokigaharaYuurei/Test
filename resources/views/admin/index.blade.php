@@ -41,7 +41,7 @@
                         <tbody class="text-[20px] [@media(max-width:320px)]:text-[12px]">
                             @foreach ($reports as $report)
                             <tr class="[@media(max-width:320px)]:border-b [@media(max-width:320px)]:border-gray-200">
-                                <td class="[@media(max-width:320px)]:p-2">{{ $report->created_at }}</td>
+                                <td class="[@media(max-width:320px)]:p-2">{{\Carbon\Carbon::parse($report->created_at)->translatedFormat('j F Y h:i');}}</td>
                                 <td class="[@media(max-width:320px)]:p-2">{{ $report->user->name ?? 'Не указано' }}</td>
                                 <td class="[@media(max-width:320px)]:p-2">{{ $report->number }}</td>
                                 <td class="[@media(max-width:320px)]:p-2 [@media(max-width:320px)]:max-w-[120px] [@media(max-width:320px)]:truncate">{{ $report->description }}</td>
@@ -70,6 +70,7 @@
                 </div>
             </main>
         </div>
+        @include('components.flash-messages')
     </x-app-layout>
 </body>
 

@@ -1,5 +1,7 @@
 import './bootstrap';
 import 'flowbite';
+import '../css/app.css';
+import '../css/style.css';
 
 import Alpine from 'alpinejs';
 import mask from '@alpinejs/mask';
